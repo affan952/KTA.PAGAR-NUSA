@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KTA Pagar Nusa — Sistem Penyimpanan</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase (compat untuk kemudahan integrasi) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <header>
+    <h1>KTA Pagar Nusa — Pendaftaran & Pengelolaan Anggota</h1>
+    <div class="actions">
+      <button id="btnAdmin">Admin Login</button>
+      <button id="btnExport">Export JSON</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="left">
+      <form id="ktaForm">
+        <h2>Formulir Pendaftaran</h2>
+
+        <label>Nama Lengkap</label>
+        <input type="text" id="nama" required>
+
+        <label>Tempat Lahir</label>
+        <input type="text" id="tempat" required>
+
+        <label>Tanggal Lahir</label>
+        <input type="date" id="tanggal" required>
+
+        <label>Alamat</label>
+        <textarea id="alamat" required></textarea>
+
+        <label>Rayon</label>
+        <input type="text" id="rayon">
+
+        <label>Sabuk</label>
+        <select id="sabuk">
+          <option value="Putih">Putih</option>
+          <option value="Hijau">Hijau</option>
+          <option value="Hitam">Hitam</option>
+        </select>
+
+        <label>Upload Foto (opsional)</label>
+        <input type="file" id="foto" accept="image/*">
+
+        <div class="note">Catatan: Jangan simpan NIK/KTP di form publik.</div>
+
+        <button type="submit">Simpan Data</button>
+      </form>
+    </section>
+
+    <section class="right">
+      <h2>Daftar Anggota</h2>
+      <input id="search" placeholder="Cari nama atau rayon..." />
+      <table id="tabelAnggota">
+        <thead>
+          <tr>
+            <th>ID</th><th>Nama</th><th>Rayon</th><th>Sabuk</th><th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Modal Admin Login sederhana -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Admin Login</h3>
+      <input id="adminEmail" type="email" placeholder="admin@example.com">
+      <input id="adminPass" type="password" placeholder="password">
+      <div class="modal-actions">
+        <button id="loginBtn">Login</button>
+        <button id="closeModal">Tutup</button>
+      </div>
+      <div id="loginMsg" class="muted"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
